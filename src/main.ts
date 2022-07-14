@@ -2,7 +2,7 @@
 
 import Car from './includes/Car'
 
-const $ = (el) => document.querySelector(el);
+import {$} from './includes/Utils'
 
 // Let's Do it
 const canvas: HTMLCanvasElement = $('#canvas')
@@ -17,6 +17,7 @@ animate()
 
 function animate() {
     car.update()
+
     canvas.height = window.innerHeight
     car.draw(ctx)
     requestAnimationFrame(animate)
