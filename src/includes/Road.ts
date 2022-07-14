@@ -1,11 +1,11 @@
 import {lerp} from "./Utils";
 
 export default class Road {
-    private x: any;
+    private x: number;
     private laneCount: number;
-    private width: any;
+    private width: number;
     private left: number;
-    private right: any;
+    private right: number;
     private top: number;
     private bottom: number;
 
@@ -14,8 +14,8 @@ export default class Road {
         this.width = width
         this.laneCount = laneCount
 
-        this.left = x - width / 2
-        this.right = x + width / 2
+        this.left = this.x - width / 2
+        this.right = this.x + width / 2
 
         const infinity = 10000000
         this.top = -infinity

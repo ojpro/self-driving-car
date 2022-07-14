@@ -4,9 +4,10 @@ body{
     overflow: hidden;
     text-align: center;
     box-sizing: border-box;
-    background-color: lightgray;
+    background-color: #03c63a;
 }
 
 #canvas{
     background-color: #eeeeee;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
 }
