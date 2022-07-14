@@ -29,7 +29,7 @@ class Car {
     }
 
     public update() {
-      this.move()
+        this.move()
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -60,7 +60,7 @@ class Car {
             this.speed = this.maxSpeed
         }
 
-        if (this.speed < -this.maxSpeed / 2) {
+        if (this.speed < -this.maxSpeed) {
             this.speed = -this.maxSpeed / 2
         }
 
