@@ -2,7 +2,7 @@ import Controls from "./Controls";
 
 class Car {
     private x: number;
-    private y: any;
+    public y: any;
     private readonly width: number;
     private readonly height: number;
     private controls: Controls;
