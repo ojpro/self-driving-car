@@ -8,7 +8,7 @@ export default class Road {
     private right: number;
     private top: number;
     private bottom: number;
-    private borders: (({ x: number; y: number } | { x: number; y: number })[] | ({ x: number; y: number } | { x: number; y: number })[])[];
+    public borders: any[];
 
     constructor(x, width, laneCount = 3) {
         this.x = x

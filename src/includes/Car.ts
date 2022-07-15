@@ -1,7 +1,8 @@
 import Controls from "./Controls";
+import Sensor from "./Sensor";
 
 class Car {
-    private x: number;
+    public x: number;
     public y: any;
     private readonly width: number;
     private readonly height: number;
@@ -10,8 +11,9 @@ class Car {
     private readonly acceleration: number;
     private readonly maxSpeed: number;
     private readonly friction: number;
-    private angle: number;
+    public angle: number;
     private image: HTMLImageElement;
+    private sensor: Sensor;
 
     constructor(x, y, width, height) {
         this.x = x
@@ -26,14 +28,17 @@ class Car {
 
         this.angle = 0
 
+        this.sensor =new  Sensor(this);
+
         this.controls = new Controls();
 
         this.image = new Image()
         this.image.src = '/images/purple-car.png'
     }
 
-    public update() {
+    public update(roadBorders: any[]) {
         this.move()
+        this.sensor.update(roadBorders)
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -47,6 +52,8 @@ class Car {
             this.height)
 
         ctx.restore()
+
+        this.sensor.draw(ctx)
     }
 
     private move() {
