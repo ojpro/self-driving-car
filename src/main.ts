@@ -12,7 +12,7 @@ canvas.width = 300
 
 const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 const road = new Road(canvas.width / 2, canvas.width * .94);
-const car: Car = new Car(road.getLaneCenter(1), 100, 50, 80,true,4)
+const car: Car = new Car(road.getLaneCenter(1), 100, 50, 80,"SELF",4)
 
 const traffic = [
     new Car(road.getLaneCenter(1), -100, 50, 80)

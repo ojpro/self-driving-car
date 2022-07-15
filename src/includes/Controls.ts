@@ -4,13 +4,13 @@ export default class Controls {
     public right: boolean;
     public reverse: boolean;
 
-    constructor(controlled: boolean) {
+    constructor(controlled: string) {
         this.forward = false
         this.left = false
         this.right = false
         this.reverse = false
 
-        if (controlled) {
+        if (controlled == "ME") {
             this.addKeywordListener()
         }else{
             this.forward = true

@@ -6,14 +6,14 @@ export default class Sensor {
     private rayLength: number;
     private raySpread: number;
     private car: Car;
-    private rayCount: number;
-    private readings: any[];
+    public rayCount: number;
+    public readings: any[];
 
     constructor(car: Car) {
         this.car = car;
-        this.rayCount = 10;
-        this.rayLength = 150
-        this.raySpread = Math.PI / 2;
+        this.rayCount = 8;
+        this.rayLength = 190
+        this.raySpread = Math.PI / 4;
 
     }
 
