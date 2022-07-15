@@ -11,6 +11,7 @@ class Car {
     private readonly maxSpeed: number;
     private readonly friction: number;
     private angle: number;
+    private image: HTMLImageElement;
 
     constructor(x, y, width, height) {
         this.x = x
@@ -26,6 +27,9 @@ class Car {
         this.angle = 0
 
         this.controls = new Controls();
+
+        this.image = new Image()
+        this.image.src = '/images/purple-car.png'
     }
 
     public update() {
@@ -36,13 +40,11 @@ class Car {
         ctx.save()
         ctx.translate(this.x, this.y)
         ctx.rotate(-this.angle)
-        ctx.beginPath()
-        ctx.rect(
+        ctx.drawImage(this.image,
             -this.width / 2,
             -this.height / 2,
             this.width,
             this.height)
-        ctx.fill()
 
         ctx.restore()
     }
