@@ -1,9 +1,11 @@
+import {lerp} from "./Utils";
+
 class NeuralNetwork {
-    public levels: any[];
+    public levels: Level[];
 
     constructor(neuronCounts) {
         this.levels = []
-        for (let i = 0; i < neuronCounts.length -1; i++) {
+        for (let i = 0; i < neuronCounts.length - 1; i++) {
             this.levels.push(new Level(
                 neuronCounts[i], neuronCounts[i + 1]
             ))
@@ -20,6 +22,28 @@ class NeuralNetwork {
         }
 
         return outputs
+    }
+
+    public static mutate(network: NeuralNetwork, amount = 1) {
+        network.levels.forEach(level => {
+            for (let i = 0; i < level.biases.length; i++) {
+                level.biases[i] = lerp(
+                    level.biases[i],
+                    Math.random() * 2 - 1,
+                    amount
+                )
+            }
+
+            for (let i = 0; i < level.weights.length; i++) {
+                for (let j = 0; j < level.weights[i].length; j++) {
+                    level.weights[i][j] = lerp(
+                        level.weights[i][j],
+                        Math.random() * 2 - 1,
+                        amount
+                    )
+                }
+            }
+        })
     }
 }
 
@@ -43,7 +67,7 @@ class Level {
         Level.randomize(this)
     }
 
-    public  static randomize(level: Level) {
+    public static randomize(level: Level) {
         for (let i = 0; i < level.inputs.length; i++) {
             for (let j = 0; j < level.outputs.length; j++) {
                 level.weights[i][j] = Math.random() * 2 - 1

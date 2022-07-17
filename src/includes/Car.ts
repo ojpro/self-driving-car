@@ -18,7 +18,7 @@ class Car {
     private sensor: Sensor;
     public polygon: any[];
     private damaged: boolean;
-    private brain: NeuralNetwork;
+    public brain: NeuralNetwork;
     private useAI: boolean;
 
     constructor(x, y, width, height, controlled = "OTHER", maxSpeed = 3) {
@@ -103,7 +103,7 @@ class Car {
         return points
     }
 
-    draw(ctx: CanvasRenderingContext2D, color: string) {
+    draw(ctx: CanvasRenderingContext2D, color: string,enableSensors = false) {
         if (this.damaged) {
             ctx.fillStyle = 'gray'
         } else {
@@ -118,7 +118,7 @@ class Car {
 
         ctx.fill()
 
-        if (this.sensor) {
+        if (this.sensor && enableSensors) {
             this.sensor.draw(ctx)
         }
     }

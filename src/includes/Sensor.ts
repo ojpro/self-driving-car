@@ -12,8 +12,8 @@ export default class Sensor {
     constructor(car: Car) {
         this.car = car;
         this.rayCount = 8;
-        this.rayLength = 190
-        this.raySpread = Math.PI / 4;
+        this.rayLength = 300
+        this.raySpread = Math.PI /4;
 
     }
 
