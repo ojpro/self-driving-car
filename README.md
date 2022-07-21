@@ -4,6 +4,10 @@ Self Driving Car using Typescript no-libraries, using Neural Network.
 - Self driving cars
 - Controlled cars
 
+# Tools
++ Typescript
++ HTML5 Canvas
++ CSS3
 
 ## Screenshots
 
