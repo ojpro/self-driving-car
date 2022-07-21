@@ -18,23 +18,26 @@ const carCtx: CanvasRenderingContext2D = carCanvas.getContext('2d');
 const networkCtx: CanvasRenderingContext2D = networkCanvas.getContext('2d');
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * .94);
-const cars: Car[] = generateCars(1)
+
+$("#carsCount").onchange = ()=>{
+    localStorage.setItem('carsCount',$("#carsCount").value)
+    window.location.reload()
+}
+
+const cars: Car[] = generateCars(localStorage.getItem("carsCount") || 100)
 
 const traffic = [
     new Car(road.getLaneCenter(1), -100, 50, 80),
-    new Car(road.getLaneCenter(0), -100, 50, 80),
     new Car(road.getLaneCenter(0), -400, 50, 80),
     new Car(road.getLaneCenter(2), -700, 50, 80),
     new Car(road.getLaneCenter(2), -1000, 50, 80),
     new Car(road.getLaneCenter(0), -1000, 50, 80),
     new Car(road.getLaneCenter(0), -1400, 50, 80),
     new Car(road.getLaneCenter(1), -1600, 50, 80),
-    new Car(road.getLaneCenter(2), -2000, 50, 80),
     new Car(road.getLaneCenter(1), -2100, 50, 80),
     new Car(road.getLaneCenter(0), -2600, 50, 80),
     new Car(road.getLaneCenter(2), -2300, 50, 80),
     new Car(road.getLaneCenter(2), -3000, 50, 80),
-    new Car(road.getLaneCenter(1), -3000, 50, 80),
 ]
 
 let bestCar:Car = cars[0];
@@ -43,7 +46,7 @@ if(localStorage.getItem('bestBrain')){
     for (let i = 0;i<cars.length;i++){
         cars[i].brain = JSON.parse(localStorage.getItem('bestBrain'))
         if(i!=0){
-            NeuralNetwork.mutate(cars[i].brain,.3)
+            NeuralNetwork.mutate(cars[i].brain,.2)
         }
     }
 }
@@ -63,7 +66,7 @@ $('#discard').addEventListener('click',function (){
 function generateCars(n){
     const cars = []
     for (let i = 1;i<=n;i++){
-        cars.push(new Car(road.getLaneCenter(1),100,40,60,"SELF",10))
+        cars.push(new Car(road.getLaneCenter(1),100,50,80,"SELF",10,"purple"))
     }
 
     return cars
@@ -92,15 +95,15 @@ function animate() {
     road.draw(carCtx)
 
     for(let i = 0;i<traffic.length;i++){
-        traffic[i].draw(carCtx, "purple")
+        traffic[i].draw(carCtx )
     }
 
     carCtx.globalAlpha = .2
     for(let i =0;i<cars.length;i++) {
-        cars[i].draw(carCtx, 'blue')
+        cars[i].draw(carCtx)
     }
     carCtx.globalAlpha = 1
-    bestCar.draw(carCtx, 'blue',true)
+    bestCar.draw(carCtx,true)
     
     carCtx.restore()
 
